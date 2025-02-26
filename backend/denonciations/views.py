@@ -18,7 +18,7 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         return obj.user == request.user or request.user.is_superuser
 
 class DenonciationViewSet(viewsets.ModelViewSet):
-    queryset = Denonciation.objects.all().order_by('-date_creation')  # 🔥 Trier par date (récentes en premier)
+    queryset = Denonciation.objects.all().order_by('-date_creation')  #  Trier par date (récentes en premier)
     serializer_class = DenonciationSerializer
 
     def get_permissions(self):
