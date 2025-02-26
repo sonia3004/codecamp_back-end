@@ -1,4 +1,5 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import SAFE_METHODS
 from .models import Denonciation
 from .serializers import DenonciationSerializer
@@ -20,6 +21,12 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class DenonciationViewSet(viewsets.ModelViewSet):
     queryset = Denonciation.objects.all().order_by('-date_creation')  #  Trier par date (récentes en premier)
     serializer_class = DenonciationSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+
+    # 🔍 Définition des filtres disponibles
+    filterset_fields = ['localisation', 'categorie', 'important']
+    search_fields = ['titre', 'description']  # 🔎 Recherche textuelle
+    ordering_fields = ['date_creation']  # ⏳ Trier par date de création
 
     def get_permissions(self):
         """ 🔥 Modifier les permissions selon l’action demandée """
