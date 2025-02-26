@@ -5,5 +5,5 @@ class DenonciationSerializer(GeoFeatureModelSerializer):  # 🔥 Utilisation du 
     class Meta:
         model = Denonciation
         geo_field = "point"  # 🔥 Indiquer que "point" est un champ géospatial
-        fields = ('id', 'titre', 'description', 'categorie', 'localisation', 'point', 'date_creation', 'user')
+        fields = ('id', 'titre', 'description', 'categorie', 'localisation', 'point', 'date_creation', 'user', 'important')  # 🔥 Ajout de "important"
         extra_kwargs = {'user': {'read_only': True}}  # 🔥 Django ne demandera plus ce champ dans le POST
