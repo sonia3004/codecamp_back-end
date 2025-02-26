@@ -20,8 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'rest_framework',
+    'rest_framework_gis', 
     'denonciations',
+    
 ]
 
 MIDDLEWARE = [
@@ -59,14 +62,15 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'plateforme_denonciation',
-        'USER': 'john_doe',
-        'PASSWORD': 'mon_mot_de_passe',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',  # ✅ Vérifie bien que c'est `postgis`
+        'NAME': 'plateforme_denonciation',  # 🔥 Assure-toi que la base existe dans PostgreSQL
+        'USER': 'john_doe',  # 🔥 Doit être un utilisateur PostgreSQL existant
+        'PASSWORD': 'mon_mot_de_passe',  # 🔥 Assure-toi que c'est le bon mot de passe
+        'HOST': 'localhost',  # 🔥 Assure-toi que PostgreSQL tourne bien localement
+        'PORT': '5432',  # ✅ Par défaut pour PostgreSQL
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
