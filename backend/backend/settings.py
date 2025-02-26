@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis', 
     'denonciations',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
